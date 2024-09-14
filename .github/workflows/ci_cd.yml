@@ -6,17 +6,16 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
     test-and-train:
         runs-on: ubuntu-latest
         steps:
             # step 1: Checkout code from repository
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
             # step 2: Set up Python
             - name: Set up Python
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v5
               with:
                   python-version: 3.8
             # step 3: Install dependencies
@@ -34,7 +33,7 @@ jobs:
                   python src/models/train_model.py
             # step 6: Upload model
             - name: Upload model to GitHub Artifacts
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v4
               with:
                   name: trained_model
                   path: models/*.pkl
